@@ -37,13 +37,7 @@ class MainScreen extends StatelessWidget {
                 onItemSelected: _OnTapItemSelected,
                 selectedIndex: index,
               ),
-              tabPages: [
-                Container(color: AppColors.neutral_200,),
-                Container(color: AppColors.neutral_300,),
-                Container(color: AppColors.neutral_400,),
-                Container(color: AppColors.neutral_500,),
-                Container(color: AppColors.neutral_600,),
-              ],
+              tabPages: tabTitles.map((e) => Center(child: Text(e))).toList(),
               onPageSelected: (page) {
                 tabIndex.value = page;
               },

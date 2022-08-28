@@ -111,15 +111,15 @@ class _CupertinoTabBarState extends State<_CupertinoTabBar> {
     var left = tabRect[index]?.left;
     if (right != null && left != null) {
       if ((right > MediaQuery.of(context).size.width)) {
-        scrollOffset.value = scrollOffset.value + 0.5;
-        _controller.jumpTo(scrollOffset.value + 0.5);
-        Future.delayed(const Duration(milliseconds: 1), () {
+        scrollOffset.value = scrollOffset.value + 1;
+        _controller.jumpTo(scrollOffset.value + 1);
+        Future.delayed(const Duration(milliseconds: 4), () {
           scrollToIndex(index);
         });
       } else if(left < 0){
-        scrollOffset.value = scrollOffset.value - 0.5;
-        _controller.jumpTo(scrollOffset.value - 0.5);
-        Future.delayed(const Duration(milliseconds: 1), () {
+        scrollOffset.value = scrollOffset.value - 1;
+        _controller.jumpTo(scrollOffset.value - 1);
+        Future.delayed(const Duration(milliseconds: 4), () {
           scrollToIndex(index);
         });
       }
