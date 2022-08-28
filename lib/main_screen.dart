@@ -1,5 +1,10 @@
 import 'package:cupertinotab/platform/scaffold.dart';
 import 'package:cupertinotab/platform/tabbar.dart';
+import 'package:cupertinotab/theme.dart';
+import 'package:cupertinotab/theme.dart';
+import 'package:cupertinotab/theme.dart';
+import 'package:cupertinotab/theme.dart';
+import 'package:cupertinotab/theme.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatelessWidget {
@@ -33,11 +38,11 @@ class MainScreen extends StatelessWidget {
                 selectedIndex: index,
               ),
               tabPages: [
-                Container(),
-                Container(),
-                Container(),
-                Container(),
-                Container(),
+                Container(color: AppColors.neutral_200,),
+                Container(color: AppColors.neutral_300,),
+                Container(color: AppColors.neutral_400,),
+                Container(color: AppColors.neutral_500,),
+                Container(color: AppColors.neutral_600,),
               ],
               onPageSelected: (page) {
                 tabIndex.value = page;

@@ -52,7 +52,7 @@ class _CupertinoTabBarState extends State<_CupertinoTabBar> {
 
   Map<int, Rect?> tabRect = HashMap();
   final ValueNotifier<double> scrollOffset = ValueNotifier(0);
-  var scrollingToIndex = -1;
+  var tappedIndex = -1;
 
   @override
   void initState() {
@@ -66,7 +66,12 @@ class _CupertinoTabBarState extends State<_CupertinoTabBar> {
 
   @override
   Widget build(BuildContext context) {
-    scrollToIndex(widget.selectedIndex);
+    if(tappedIndex != -1){
+      scrollToIndex(tappedIndex);
+      tappedIndex = -1;
+    } else{
+      scrollToIndex(widget.selectedIndex);
+    }
     return SizedBox(
         height: 38,
         child: NotificationListener<ScrollNotification>(
@@ -85,6 +90,7 @@ class _CupertinoTabBarState extends State<_CupertinoTabBar> {
                       return GestureDetector(
                         behavior: HitTestBehavior.opaque,
                         onTap: (){
+                          tappedIndex = index;
                           handleItemSelected(index);
                         },
                         child: _CupertinoTab(
@@ -104,16 +110,16 @@ class _CupertinoTabBarState extends State<_CupertinoTabBar> {
     var right = tabRect[index]?.right;
     var left = tabRect[index]?.left;
     if (right != null && left != null) {
-      if (right > MediaQuery.of(context).size.width) {
-        scrollOffset.value = scrollOffset.value + 1;
-        _controller.jumpTo(scrollOffset.value + 1);
-        Future.delayed(const Duration(milliseconds: 2), () {
+      if ((right > MediaQuery.of(context).size.width)) {
+        scrollOffset.value = scrollOffset.value + 0.5;
+        _controller.jumpTo(scrollOffset.value + 0.5);
+        Future.delayed(const Duration(milliseconds: 1), () {
           scrollToIndex(index);
         });
       } else if(left < 0){
-        scrollOffset.value = scrollOffset.value - 1;
-        _controller.jumpTo(scrollOffset.value - 1);
-        Future.delayed(const Duration(milliseconds: 2), () {
+        scrollOffset.value = scrollOffset.value - 0.5;
+        _controller.jumpTo(scrollOffset.value - 0.5);
+        Future.delayed(const Duration(milliseconds: 1), () {
           scrollToIndex(index);
         });
       }
@@ -162,7 +168,7 @@ class _CupertinoTabState extends State<_CupertinoTab> {
                           : AppColors.textTertiary),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Container(
